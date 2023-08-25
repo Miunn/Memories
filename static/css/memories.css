@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+h1 {
+    margin: 2vw 0vw;
+}
+
+.wrapper {
+    margin-top: min(7vw, 10vh);
+}
+
+.project {
+    display: block;
+    max-width: 350px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: transform 400ms;
+}
+
+.project:hover {
+    transform: translate(2px, -5px);
+    box-shadow: rgba(255, 255, 255, 0.705) 1.95px 1.95px 2.6px;
+}
+
+.project .project-description {
+    padding: 20px;
+}
+
+.project img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}

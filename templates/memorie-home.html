@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+<title>Saut à l'élastique</title>
+{% endblock %}
+
+{% block body %}
+<h1><a href="/"><img src="{{url_for('static', filename='assets/back.png')}}"></a> {{headline|safe}}</h1>
+
+<h2>{{subtitle|safe}}</h2>
+
+<h3>{{img_count}} Photos</h3>
+
+<div class="line"></div>
+
+<div class="thumbnails">
+
+    {% for pic in pictures %}
+    <img class="thumb_img" id="{{pic}}" src="{{url_for('static', filename='assets/elastique/thumbnails/img/'+pic)}}"
+        alt="">
+    {% endfor %}
+
+</div>
+
+
+<h3>{{film_count}} Films</h3>
+
+<div class="line"></div>
+
+<div class="thumbnails">
+    {% for film in films %}
+    <img class="thumb_film" id="{{film[0]}}"
+        src="{{url_for('static', filename='assets/elastique/thumbnails/film/'+film[1])}}" alt="">
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{{url_for('static', filename='js/home-project.js')}}"></script>
+{% endblock %}

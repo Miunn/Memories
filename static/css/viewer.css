@@ -1,0 +1,94 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+h1 {
+    position: absolute;
+    top: 20px;
+    left: 2vw;
+
+    font-size: min(7vw, 2rem);
+
+    z-index: 99999;
+}
+
+#carrousel {
+    position: relative;
+}
+
+#carrousel>.img_viewer {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    margin: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-100vw + -50%), calc(-100vh + -50%));
+
+    transition: opacity 1s, transform 1s;
+    opacity: 0;
+}
+
+.first {
+    z-index: 9999;
+}
+
+.hide {
+    visibility: collapse;
+}
+
+.fadeIn {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+button {
+    all: unset;
+
+    max-width: 50px;
+    cursor: pointer;
+
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 20000;
+}
+
+button>img {
+    max-width: 40px;
+}
+
+#prev {
+    left: 2vw;
+}
+
+#next {
+    right: 2vw;
+}
+
+#loading {
+    font-size: min(7vw, 4rem);
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 4000;
+
+    display: none;
+}

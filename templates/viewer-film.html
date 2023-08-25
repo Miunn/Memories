@@ -1,0 +1,13 @@
+{% extends 'viewer-template.html' %}
+
+{% block viewer %}
+<div id="carrousel">
+    <video class="img_viewer first fadeIn" id="{{fn}}" controls src="{{url_for('static', filename=path)}}"></video>
+</div>
+
+<h1 id="loading">Chargement...</h1>
+{% endblock %}
+
+{% block additionnalScripts %}
+<script src="{{url_for('static', filename='js/viewer-film.js')}}"></script>
+{% endblock %}

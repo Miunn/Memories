@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/viewer.css')}}">
+<title>Saut à l'élastique</title>
+{% endblock %}
+
+{% block body %}
+<h1><a href="/{{memorie}}">Accueil</a></h1>
+<button id="prev"><img src="{{url_for('static', filename='assets/back.png')}}" alt=""></button>
+
+{% block viewer %}
+{% endblock %}
+
+<button id="next"><img src="{{url_for('static', filename='assets/next.png')}}" alt=""></button>
+{% endblock %}
+
+
+{% block script %}
+<script src="{{url_for('static', filename='js/viewer.js')}}"></script>
+{% block additionnalScripts %}
+{% endblock %}
+{% endblock %}

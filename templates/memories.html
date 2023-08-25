@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/memories.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<h1>Memories bring back you</h1>
+
+<div class="wrapper">
+    {% for p in project %}
+    <a href="{{p['href']}}" class="project">
+        <img src="{{url_for('static', filename=p['cover_path'])}}" alt="" class="project-img">
+
+        <div class="project-description">
+            <h2>{{p["title"]}}</h2>
+
+            <p>{{p["description"]}}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
