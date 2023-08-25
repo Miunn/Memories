@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: max(8vw, 3rem);
+}
+
+h2 {
+    font-size: max(2vw, 1.8rem);
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: underline;
+}
+
+.curve-wrapper {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.curve-wrapper svg {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.curve-wrapper#top {
+    top: 0;
+
+    transform: rotate(180deg);
+}
+
+.curve-wrapper#bottom {
+    bottom: 0;
+}

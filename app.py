@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, abort
+import werkzeug.exceptions
 from os import listdir, path
 
 import json
@@ -10,6 +11,12 @@ with open("static/data.json", "r") as f:
 
 PROJECTS = list(PROJECTS_DATA.keys())
 
+@app.errorhandler(404)
+def not_found(error):
+    print(error)
+    return render_template("404.html"), 404
+
+
 @app.route("/")
 def home():
     return render_template("memories.html", project=PROJECTS_DATA.values())
@@ -18,7 +25,7 @@ def home():
 def project(project: str):
 
     if not project in PROJECTS:
-        return make_response("Not found", 404)
+        abort(404)
 
     # Get filenames
     images_fns = listdir("static/assets/elastique/thumbnails/img")
@@ -36,12 +43,12 @@ def project(project: str):
 @app.route("/<string:project>/viewer/<string:filetype>")
 def viewer(project: str, filetype: str):    
     if not project in PROJECTS:
-        return make_response("Not Found", 404)
+        abort(404)
     
     start = request.args.get("start", default=None)
 
     if start is None:
-        return make_response("Not Found", 404)
+        abort(404)
 
     if filetype == "img":
         path = f"assets/{project}/img/{start}"
