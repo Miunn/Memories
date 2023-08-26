@@ -9,9 +9,19 @@ body {
     padding-bottom: 100px;
 }
 
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 h1 {
-    margin: 32px 0vw;
+    padding: 32px 7px;
     text-align: center;
+
+    background-color: black;
+    z-index: 100;
 }
 
 .wrapper {
