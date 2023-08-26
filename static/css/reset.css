@@ -16,7 +16,11 @@ body {
     background-color: black;
 }
 
-svg path {
+svg {
+    width: 100%;
+}
+
+.blue-line path {
     stroke: var(--svg-blue);
 }
 

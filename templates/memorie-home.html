@@ -1,39 +1,49 @@
 {% extends 'index.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}?version=1">
 <title>Saut à l'élastique</title>
 {% endblock %}
 
 {% block body %}
-<h1><a href="/" class="goback"><img src="{{url_for('static', filename='assets/back.png')}}"></a> {{headline|safe}}</h1>
+<div class="wrapper">
+    <h1><a href="/" class="goback"><img src="{{url_for('static', filename='assets/back.png')}}"></a> {{headline|safe}}</h1>
 
-<h2>{{subtitle|safe}}</h2>
-
-<h3>{{img_count}} Photos <a href="/{{project}}/all/img" class="seeall">Voir tout</a></h3>
-
-<div class="line"></div>
-
-<div class="thumbnails">
-
-    {% for pic in pictures %}
-    <img class="thumb_img" id="{{pic}}" src="{{url_for('static', filename='assets/elastique/thumbnails/img/'+pic)}}"
-        alt="">
-    {% endfor %}
-
+    <h2>{{subtitle|safe}}</h2>
+    
+    <h3>{{img_count}} Photos <a href="/{{project}}/all/img" class="seeall">Voir tout</a></h3>
+    
+    <div class="line"></div>
+    
+    <div class="thumbnails">
+    
+        {% for pic in pictures %}
+        <img class="thumb_img" id="{{pic}}" src="{{url_for('static', filename='assets/elastique/thumbnails/img/'+pic)}}"
+            alt="">
+        {% endfor %}
+    
+    </div>
+    
+    
+    <h3>{{film_count}} Films <a href="/{{project}}/all/film" class="seeall">Voir tout</a></h3>
+    
+    <div class="line"></div>
+    
+    <div class="thumbnails">
+        {% for film in films %}
+        <img class="thumb_film" id="{{film[0]}}"
+            src="{{url_for('static', filename='assets/elastique/thumbnails/film/'+film[1])}}" alt="">
+        {% endfor %}
+    </div>    
 </div>
 
-
-<h3>{{film_count}} Films <a href="/{{project}}/all/film" class="seeall">Voir tout</a></h3>
-
-<div class="line"></div>
-
-<div class="thumbnails">
-    {% for film in films %}
-    <img class="thumb_film" id="{{film[0]}}"
-        src="{{url_for('static', filename='assets/elastique/thumbnails/film/'+film[1])}}" alt="">
-    {% endfor %}
-</div>
+<svg class="layered-svg" viewBox="0 0 1920 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+    <path d="M0 319L45.7 317.3C91.3 315.7 182.7 312.3 274.2 317.2C365.7 322 457.3 335 548.8 336.5C640.3 338 731.7 328 823 326.8C914.3 325.7 1005.7 333.3 1097 339C1188.3 344.7 1279.7 348.3 1371.2 343.5C1462.7 338.7 1554.3 325.3 1645.8 318.8C1737.3 312.3 1828.7 312.7 1874.3 312.8L1920 313L1920 501L1874.3 501C1828.7 501 1737.3 501 1645.8 501C1554.3 501 1462.7 501 1371.2 501C1279.7 501 1188.3 501 1097 501C1005.7 501 914.3 501 823 501C731.7 501 640.3 501 548.8 501C457.3 501 365.7 501 274.2 501C182.7 501 91.3 501 45.7 501L0 501Z" fill="#fa7268"></path>
+    <path d="M0 394L45.7 391.8C91.3 389.7 182.7 385.3 274.2 381.5C365.7 377.7 457.3 374.3 548.8 374.3C640.3 374.3 731.7 377.7 823 372C914.3 366.3 1005.7 351.7 1097 350.8C1188.3 350 1279.7 363 1371.2 366.2C1462.7 369.3 1554.3 362.7 1645.8 365.8C1737.3 369 1828.7 382 1874.3 388.5L1920 395L1920 501L1874.3 501C1828.7 501 1737.3 501 1645.8 501C1554.3 501 1462.7 501 1371.2 501C1279.7 501 1188.3 501 1097 501C1005.7 501 914.3 501 823 501C731.7 501 640.3 501 548.8 501C457.3 501 365.7 501 274.2 501C182.7 501 91.3 501 45.7 501L0 501Z" fill="#ef5f67"></path>
+    <path d="M0 399L45.7 396.7C91.3 394.3 182.7 389.7 274.2 391.3C365.7 393 457.3 401 548.8 400.8C640.3 400.7 731.7 392.3 823 385.3C914.3 378.3 1005.7 372.7 1097 369.5C1188.3 366.3 1279.7 365.7 1371.2 366.8C1462.7 368 1554.3 371 1645.8 373.3C1737.3 375.7 1828.7 377.3 1874.3 378.2L1920 379L1920 501L1874.3 501C1828.7 501 1737.3 501 1645.8 501C1554.3 501 1462.7 501 1371.2 501C1279.7 501 1188.3 501 1097 501C1005.7 501 914.3 501 823 501C731.7 501 640.3 501 548.8 501C457.3 501 365.7 501 274.2 501C182.7 501 91.3 501 45.7 501L0 501Z" fill="#e34c67"></path>
+    <path d="M0 409L45.7 411.5C91.3 414 182.7 419 274.2 425.2C365.7 431.3 457.3 438.7 548.8 435.2C640.3 431.7 731.7 417.3 823 415.5C914.3 413.7 1005.7 424.3 1097 428.2C1188.3 432 1279.7 429 1371.2 423.7C1462.7 418.3 1554.3 410.7 1645.8 408.7C1737.3 406.7 1828.7 410.3 1874.3 412.2L1920 414L1920 501L1874.3 501C1828.7 501 1737.3 501 1645.8 501C1554.3 501 1462.7 501 1371.2 501C1279.7 501 1188.3 501 1097 501C1005.7 501 914.3 501 823 501C731.7 501 640.3 501 548.8 501C457.3 501 365.7 501 274.2 501C182.7 501 91.3 501 45.7 501L0 501Z" fill="#d53867"></path>
+    <path d="M0 468L45.7 467.7C91.3 467.3 182.7 466.7 274.2 465C365.7 463.3 457.3 460.7 548.8 460.3C640.3 460 731.7 462 823 459.3C914.3 456.7 1005.7 449.3 1097 445.5C1188.3 441.7 1279.7 441.3 1371.2 445.7C1462.7 450 1554.3 459 1645.8 461.7C1737.3 464.3 1828.7 460.7 1874.3 458.8L1920 457L1920 501L1874.3 501C1828.7 501 1737.3 501 1645.8 501C1554.3 501 1462.7 501 1371.2 501C1279.7 501 1188.3 501 1097 501C1005.7 501 914.3 501 823 501C731.7 501 640.3 501 548.8 501C457.3 501 365.7 501 274.2 501C182.7 501 91.3 501 45.7 501L0 501Z" fill="#c62368"></path>
+</svg>
 {% endblock %}
 
 {% block script %}
