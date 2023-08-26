@@ -19,3 +19,11 @@ body {
 a {
     text-decoration: none;
 }
+
+.goback {
+    display: block;
+    height: 30px;
+    float: left;
+
+    margin-right: 20px;
+}

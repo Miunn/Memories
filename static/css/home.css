@@ -9,10 +9,16 @@ body {
     position: relative;
 }
 
-a {
+.goback {
     display: block;
     height: 30px;
     float: left;
+}
+
+.seeall {
+    float: right;
+
+    text-transform: uppercase;
 }
 
 a>img {

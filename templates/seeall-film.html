@@ -1,0 +1,11 @@
+{% extends 'seeall-template.html' %}
+
+{% block addHead %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/seeall-film.css')}}">
+{% endblock %}
+
+{% block list %}
+{% for link in links %}
+    <video src="{{link}}" controls></video>
+{% endfor %}
+{% endblock %}

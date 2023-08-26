@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block body %}
-<h1><a href="/"><img src="{{url_for('static', filename='assets/back.png')}}"></a> {{headline|safe}}</h1>
+<h1><a href="/" class="goback"><img src="{{url_for('static', filename='assets/back.png')}}"></a> {{headline|safe}}</h1>
 
 <h2>{{subtitle|safe}}</h2>
 
-<h3>{{img_count}} Photos</h3>
+<h3>{{img_count}} Photos <a href="/{{project}}/all/img" class="seeall">Voir tout</a></h3>
 
 <div class="line"></div>
 
@@ -24,7 +24,7 @@
 </div>
 
 
-<h3>{{film_count}} Films</h3>
+<h3>{{film_count}} Films <a href="/{{project}}/all/film" class="seeall">Voir tout</a></h3>
 
 <div class="line"></div>
 
