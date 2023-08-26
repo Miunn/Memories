@@ -17,11 +17,15 @@ svg {
 }
 
 h1 {
-    padding: 32px 7px;
+    margin: 16px 0px;
+    padding: 16px 7px;
     text-align: center;
 
     background-color: black;
     z-index: 100;
+
+    border: 3px solid var(--svg-blue);
+    border-radius: 5px;
 }
 
 .wrapper {

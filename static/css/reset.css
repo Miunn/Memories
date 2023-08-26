@@ -16,6 +16,10 @@ body {
     background-color: black;
 }
 
+svg path {
+    stroke: var(--svg-blue);
+}
+
 a {
     text-decoration: none;
 }
