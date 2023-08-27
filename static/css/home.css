@@ -17,6 +17,10 @@ body {
     z-index: -100;
 }
 
+.mobile {
+    display: none;
+}
+
 .seeall {
     float: right;
 
@@ -43,6 +47,10 @@ h2 {
 
 h2, h3 {
     margin-top: 3vw;
+}
+
+svg path {
+    width: 100%;
 }
 
 .line {
@@ -104,7 +112,19 @@ img {
 }
 
 @media screen and (max-width: 750px) {
+    .wrapper {
+        width: 90%;
+    }
+
     h2 {
         margin-bottom: 40px;
+    }
+
+    .large {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
     }
 }

@@ -2,8 +2,8 @@
     "elastique": {
         "title": "Saut à l'élastique",
         "description": "Saut réalisé au pont de Ponsonnas lors des vacances en Isère en 2023",
-        "headline": "Mon saut à l'élastique au pont de Ponsonnas",
-        "subtitle": "Retrouvez les photos de mon saut à l'élastique réalisé le <span>21/08/2023</span>",
+        "headline": "Le grand saut",
+        "subtitle": "Photos et vidéos du saut à l'élastique réalisé le <span>21/08/2023</span>",
         "cover_path": "assets/elastique/cover.jpg",
         "href": "elastique"
     }
