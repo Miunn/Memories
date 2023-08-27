@@ -1,3 +1,15 @@
+@keyframes offsetLines {
+    0% {
+        stroke-dasharray: 10 1000;
+        stroke-dashoffset: 10;
+    }
+
+    100% {
+        stroke-dasharray: 500 0;
+        stroke-dashoffset: 800;
+    }
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -30,6 +42,8 @@ a {
     position: relative;
     display: block;
     width: 100%;
+
+    animation: offsetLines 1s ease-out forwards;
 }
 
 .curve-wrapper#top {
