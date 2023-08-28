@@ -33,7 +33,7 @@ async function loadAll(HTMLParent, type) {
 
     if (type === "img") {
         let firstFile = data["filenames"][0];
-        loadImg(HTMLParent, firstFile, data["path"][firstFile], false, i*100);
+        loadImg(HTMLParent, firstFile, data["path"][firstFile], false, i*100, data["descriptions"][firstFile]);
         console.log("load false");
         i--;
     }
@@ -42,16 +42,16 @@ async function loadAll(HTMLParent, type) {
     // First is load in template and has the data for offset
     for (file of data["filenames"].slice(1)) {
         if (type === "img") {
-            loadImg(HTMLParent, file, data["path"][file], true, i*100);
+            loadImg(HTMLParent, file, data["path"][file], true, i*100, data["descriptions"][file]);
         } else if (type === "film") {
-            loadFilm(HTMLParent, file, data["path"][file], true, i*100);
+            loadFilm(HTMLParent, file, data["path"][file], true, i*100, data["descriptions"][file]);
         }
 
         i--;
     }
 }
 
-function loadImg(HTMLParent, filename, path, hide, zIndex) {
+function loadImg(HTMLParent, filename, path, hide, zIndex, HTMLdescription) {
     console.log("load:"+hide);
     let wrapperDiv = document.createElement("div");
     wrapperDiv.classList.add("img-wrapper");
@@ -86,7 +86,7 @@ function loadImg(HTMLParent, filename, path, hide, zIndex) {
     let description = document.createElement("p");
     description.classList.add("img-description");
     description.style.zIndex = zIndex+1;
-    description.innerText = "Pont de Ponsonnas";
+    description.innerHTML = HTMLdescription;
 
     wrapperDiv.appendChild(description);
 }

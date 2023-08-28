@@ -96,8 +96,8 @@ def get_filenames(project: str, filetype: str):
     except ValueError:
         pass
 
-    #return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files])}, 200)   # Like this dict() unsort the list
-    return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files])}, 200)
+    print(files)
+    return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files]), "descriptions": PROJECTS_DATA[project]["descriptions"]}, 200)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
