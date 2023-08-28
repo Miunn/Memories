@@ -35,7 +35,7 @@ h1 .gohome {
     position: relative;
 }
 
-#carrousel>.img_viewer {
+#carrousel .img-wrapper {
     max-width: 90vw;
     max-height: 90vh;
 
@@ -50,8 +50,36 @@ h1 .gohome {
     opacity: 0;
 }
 
+#carrousel .img_viewer {
+    max-width: 90vw;
+    max-height: 90vh;
+
+    margin: auto;
+
+    position: absolute;
+    /*top: 50%;
+    left: 50%;
+    transform: translate(calc(-100vw + -50%), calc(-100vh + -50%));*/
+
+    /**/
+
+    mask: linear-gradient(180deg,#0000,#000 0% 90%,rgba(0, 0, 0, 0.164));
+    -webkit-mask: linear-gradient(180deg,#0000,#000 0% 90%,rgba(0, 0, 0, 0.164));
+}
+
+#carrousel .img-description {
+    font-size: 2rem;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
 .first {
     z-index: 9999;
+}
+
+.first-description {
+    z-index: 10000;
 }
 
 .hide {

@@ -13,10 +13,13 @@ function endLoad(parent, imgHTML) {
     //parent.appendChild(imgHTML);
 
     //loading.style.display = "none";
+    imgHTML.parentNode.style.width = imgHTML.width + "px";
+    imgHTML.parentNode.style.height = imgHTML.height + "px";
 }
 
 async function loadAll(HTMLParent, type) {
-    const responseFiles = await fetch(`/elastique/names/${type}?offset=${carrousel.children[0].id}`);
+    const params = new URLSearchParams(window.location.search)
+    const responseFiles = await fetch(`/elastique/names/${type}?offset=${params.get("start")}`);
 
     if (!responseFiles.ok) {
         return;
@@ -26,8 +29,15 @@ async function loadAll(HTMLParent, type) {
 
     let i = data["filenames"].length;
     maxIndex = i;
-
     maxCounter.innerText = maxIndex;
+
+    if (type === "img") {
+        let firstFile = data["filenames"][0];
+        loadImg(HTMLParent, firstFile, data["path"][firstFile], false, i*100);
+        console.log("load false");
+        i--;
+    }
+
 
     // First is load in template and has the data for offset
     for (file of data["filenames"].slice(1)) {
@@ -42,22 +52,43 @@ async function loadAll(HTMLParent, type) {
 }
 
 function loadImg(HTMLParent, filename, path, hide, zIndex) {
+    console.log("load:"+hide);
+    let wrapperDiv = document.createElement("div");
+    wrapperDiv.classList.add("img-wrapper");
     let img = document.createElement("img");
     img.classList.add("img_viewer");
-    img.classList.add("fadeOut");
-    if (hide) {
-        img.classList.add("hide");
-    }
+    wrapperDiv.classList.add("hide");
+
     img.id = filename;
+
+    wrapperDiv.style.zIndex = zIndex+10;
     img.style.zIndex = zIndex;
-    HTMLParent.appendChild(img);
+
+    wrapperDiv.appendChild(img);
+    HTMLParent.appendChild(wrapperDiv);
 
     // Add load listener before fetching to be sure
-    img.addEventListener("load", (e) => {
-        endLoad(HTMLParent, e.target);
-    });
-            
+    if (hide) {
+        img.addEventListener("load", (e) => {
+            endLoad(HTMLParent, e.target);
+        });
+    } else {
+        img.addEventListener("load", (e) => {
+            endLoad(HTMLParent, e.target);
+            e.target.parentNode.classList.remove("hide");
+            e.target.parentNode.classList.remove("fadeOut");
+            e.target.parentNode.classList.add("fadeIn");
+        });
+    }
+       
     img.src = path;
+
+    let description = document.createElement("p");
+    description.classList.add("img-description");
+    description.style.zIndex = zIndex+1;
+    description.innerText = "Pont de Ponsonnas";
+
+    wrapperDiv.appendChild(description);
 }
 
 function loadFilm(HTMLParent, filename, path, hide, zIndex) {
@@ -65,7 +96,7 @@ function loadFilm(HTMLParent, filename, path, hide, zIndex) {
     video.setAttribute("controls", "true");
     video.classList.add("img_viewer");
     if (hide) {
-        video.classList.toggle("hide");
+        video.classList.add("hide");
     }
     video.id = filename;
     video.style.zIndex = zIndex;
@@ -79,31 +110,45 @@ function loadFilm(HTMLParent, filename, path, hide, zIndex) {
 }
 
 function goNext() {
-    let imgs = carrousel.children;
-    //imgs[currentIndex].classList.toggle("hide");
-    imgs[currentIndex].classList.remove("fadeIn");
-    imgs[currentIndex].classList.add("fadeOut");
+    let imgsWrapper = carrousel.children;
+    //imgsWrapper[currentIndex].classList.toggle("hide");
+    imgsWrapper[currentIndex].classList.remove("fadeIn");
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeIn");
+    imgsWrapper[currentIndex].classList.add("fadeOut");
+
+    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeOut");
     
     currentIndex = (currentIndex+1) % maxIndex;
     currentCounter.innerText = currentIndex+1;
 
-    imgs[currentIndex].classList.remove("hide");
-    imgs[currentIndex].classList.remove("fadeOut");
-    imgs[currentIndex].classList.add("fadeIn");
+    imgsWrapper[currentIndex].classList.remove("hide");
+    imgsWrapper[currentIndex].classList.remove("fadeOut");
+
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("hide");
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeOut");
+    imgsWrapper[currentIndex].classList.add("fadeIn");
+    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeIn");
 }
 
 function goPrev() {
-    let imgs = carrousel.children;
-    //imgs[currentIndex].classList.add("hide");
-    imgs[currentIndex].classList.remove("fadeIn");
-    imgs[currentIndex].classList.add("fadeOut");
+    let imgsWrapper = carrousel.children;
+    //imgsWrapper[currentIndex].classList.add("hide");
+    imgsWrapper[currentIndex].classList.remove("fadeIn");
+    imgsWrapper[currentIndex].classList.add("fadeOut");
+
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeIn");
+    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeOut");
 
     currentIndex = (currentIndex+maxIndex-1) % maxIndex;    // +maxIndex because in JS -1%x=-1 et non x-1 donc on ajoute x pour loop
     currentCounter.innerText = currentIndex+1;
     
-    imgs[currentIndex].classList.remove("hide");
-    imgs[currentIndex].classList.remove("fadeOut");
-    imgs[currentIndex].classList.add("fadeIn");
+    imgsWrapper[currentIndex].classList.remove("hide");
+    imgsWrapper[currentIndex].classList.remove("fadeOut");
+    imgsWrapper[currentIndex].classList.add("fadeIn");
+
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("hide");
+    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeOut");
+    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeIn");
 }
 
 next.addEventListener("click", (e) => {
@@ -124,4 +169,4 @@ document.addEventListener("keydown", (e) => {
     } else if (e.key === "ArrowLeft") {
         goPrev();
     }
-})
+});
