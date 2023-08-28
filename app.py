@@ -13,7 +13,6 @@ PROJECTS = list(PROJECTS_DATA.keys())
 
 @app.errorhandler(404)
 def not_found(error):
-    print(error)
     return render_template("404.html"), 404
 
 

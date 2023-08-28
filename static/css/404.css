@@ -55,3 +55,23 @@ a {
 .curve-wrapper#bottom {
     bottom: 0;
 }
+
+@media screen and (max-width: 850px) {
+    .curve-wrapper#top {
+        top: 2vh;
+    }
+
+    .curve-wrapper#bottom {
+        bottom: 2vh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .curve-wrapper#top {
+        top: 10vh;
+    }
+
+    .curve-wrapper#bottom {
+        bottom: 10vh;
+    }
+}
