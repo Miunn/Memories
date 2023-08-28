@@ -6,6 +6,10 @@
 
 {% block list %}
 {% for link in links %}
-    <img src="{{link}}">
+    <img class="list-item list-img" src="{{link}}">
 {% endfor %}
+{% endblock %}
+
+{% block addScript %}
+<script src="{{url_for('static', filename='js/seeall-img.js')}}"></script>
 {% endblock %}
