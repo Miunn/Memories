@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://db.onlinewebfonts.com/c/5b0447cf0c1ffff7c83827dde5f837bb?family=Alliance+No.2+Light');
 
 * {
     margin: 0;
@@ -34,4 +35,8 @@ a {
     float: left;
 
     margin-right: 20px;
+}
+
+.alliance {
+    font-family: "Alliance No.2 Light", sans-serif;
 }
