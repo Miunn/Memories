@@ -130,3 +130,18 @@ button>img {
 
     display: none;
 }
+
+@media screen and (max-width: 600px) {
+    #carrousel .img_viewer {
+        mask: linear-gradient(180deg,#0000,#000 0% 70%,rgba(0, 0, 0, 0.164));
+        -webkit-mask: linear-gradient(180deg,#0000,#000 0% 70%,rgba(0, 0, 0, 0.164));
+    }
+
+    #carrousel .img-description {
+        font-size: 1rem;
+
+        left: 10px;
+        bottom: 10px;
+
+    }
+}
