@@ -2,11 +2,11 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/viewer.css')}}">
-<title>Saut à l'élastique</title>
+<title>{{title}}</title>
 {% endblock %}
 
 {% block body %}
-<h1><a class="gohome" href="/{{memorie}}">Accueil</a> <span class="counter"><span class="counter-span" id="current">1</span> / <span class="counter-span" id="total">1</span></span></h1>
+<h1><a class="gohome" href="/{{memory}}">Accueil</a> <span class="counter"><span class="counter-span" id="current">1</span> / <span class="counter-span" id="total">1</span></span></h1>
 
 
 <button id="prev"><img src="{{url_for('static', filename='assets/back.png')}}" alt=""></button>

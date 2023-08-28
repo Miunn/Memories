@@ -37,7 +37,7 @@ def project(project: str):
 
     films_fns = [(f,i) for f,i in zip(film_path, film_thumb)]
 
-    return render_template("memorie-home.html", headline=PROJECTS_DATA[project]["headline"], project=project, subtitle=PROJECTS_DATA[project]["subtitle"], pictures=images_fns, films=films_fns, img_count=len(images_fns), film_count=len(films_fns))
+    return render_template("memorie-home.html", title=PROJECTS_DATA[project]["title"], headline=PROJECTS_DATA[project]["headline"], memory=project, subtitle=PROJECTS_DATA[project]["subtitle"], pictures=images_fns, films=films_fns, img_count=len(images_fns), film_count=len(films_fns))
 
 @app.route("/<string:project>/viewer/<string:filetype>")
 def viewer(project: str, filetype: str):    
@@ -51,12 +51,12 @@ def viewer(project: str, filetype: str):
 
     if filetype == "img":
         path = f"assets/{project}/img/{start}"
-        return render_template("viewer-img.html", memorie=project, path=path, fn=start)
+        return render_template("viewer-img.html", title=PROJECTS_DATA[project]["title"], memory=project, path=path, fn=start)
     elif filetype == "film":
         path = f"assets/{project}/film/{start}"
-        return render_template("viewer-film.html", memorie=project, path=path, fn=start)
+        return render_template("viewer-film.html", title=PROJECTS_DATA[project]["title"], memory=project, path=path, fn=start)
     else:
-        return make_response("UNKNOWN TYPE", 400)
+        abort(404)
 
 @app.route("/<string:project>/all/<string:filetype>")
 def seeall(project: str, filetype: str):
@@ -70,19 +70,19 @@ def seeall(project: str, filetype: str):
     files.sort()
 
     if filetype == "img":
-        return render_template("seeall-img.html", project=project, file_count=len(files), filetype="Photos", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
+        return render_template("seeall-img.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=len(files), filetype="Photos", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
     elif filetype == "film":
-        return render_template("seeall-film.html", project=project, file_count=len(files), filetype="Films", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
+        return render_template("seeall-film.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=len(files), filetype="Films", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
     else:
         abort(404)
 
 @app.route("/<string:project>/names/<string:filetype>")
 def get_filenames(project: str, filetype: str):
     if not project in PROJECTS:
-        return make_response("Not Found", 404)
+        abort(404)
     
     if filetype != "img" and filetype != "film":
-        return make_response("Not Found", 404)
+        abort(404)
     
     files = listdir(f"static/assets/{project}/{filetype}")
     files.sort()

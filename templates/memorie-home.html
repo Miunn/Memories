@@ -2,7 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}?version=2">
-<title>Saut à l'élastique</title>
+<title>{{title}}</title>
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
 
     <h2>{{subtitle|safe}}</h2>
     
-    <h3>{{img_count}} Photos <a href="/{{project}}/all/img" class="seeall">Voir tout</a></h3>
+    <h3>{{img_count}} Photos <a href="/{{memory}}/all/img" class="seeall">Voir tout</a></h3>
     
     <div class="line"></div>
     
@@ -25,7 +25,7 @@
     </div>
     
     
-    <h3>{{film_count}} Films <a href="/{{project}}/all/film" class="seeall">Voir tout</a></h3>
+    <h3>{{film_count}} Films <a href="/{{memory}}/all/film" class="seeall">Voir tout</a></h3>
     
     <div class="line"></div>
     

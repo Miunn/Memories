@@ -2,12 +2,14 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/seeall-template.css')}}">
+
+<title>{{title}}</title>
 {% block addHead %}
 {% endblock %}
 {% endblock %}
 
 {% block body %}
-<h1><a href="/{{project}}"><img class="goback" src="{{url_for('static', filename='assets/back.png')}}" alt="Go back to the memory"></a> Les {{file_count}} {{filetype}}</h1>
+<h1><a href="/{{memory}}"><img class="goback" src="{{url_for('static', filename='assets/back.png')}}" alt="Go back to the memory"></a> Les {{file_count}} {{filetype}}</h1>
 
 <div class="list">
     {% block list %}
