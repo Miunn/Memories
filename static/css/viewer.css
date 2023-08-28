@@ -16,9 +16,19 @@ h1 {
     top: 20px;
     left: 2vw;
 
+    width: 96vw;
+
     font-size: min(7vw, 2rem);
 
     z-index: 99999;
+}
+
+h1 .gohome {
+    float: left;
+}
+
+.counter {
+    float: right;
 }
 
 #carrousel {

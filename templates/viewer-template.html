@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block body %}
-<h1><a href="/{{memorie}}">Accueil</a></h1>
+<h1><a class="gohome" href="/{{memorie}}">Accueil</a> <span class="counter"><span class="counter-span" id="current">1</span> / <span class="counter-span" id="total">1</span></span></h1>
+
+
 <button id="prev"><img src="{{url_for('static', filename='assets/back.png')}}" alt=""></button>
 
 {% block viewer %}

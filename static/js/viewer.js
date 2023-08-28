@@ -1,3 +1,5 @@
+const currentCounter = document.getElementById("current");
+const maxCounter = document.getElementById("total");
 const next = document.getElementById("next");
 const prev = document.getElementById("prev");
 const carrousel = document.getElementById("carrousel");
@@ -24,6 +26,8 @@ async function loadAll(HTMLParent, type) {
 
     let i = data["filenames"].length;
     maxIndex = i;
+
+    maxCounter.innerText = maxIndex;
 
     // First is load in template and has the data for offset
     for (file of data["filenames"].slice(1)) {
@@ -81,6 +85,8 @@ function goNext() {
     imgs[currentIndex].classList.add("fadeOut");
     
     currentIndex = (currentIndex+1) % maxIndex;
+    currentCounter.innerText = currentIndex+1;
+
     imgs[currentIndex].classList.remove("hide");
     imgs[currentIndex].classList.remove("fadeOut");
     imgs[currentIndex].classList.add("fadeIn");
@@ -91,7 +97,10 @@ function goPrev() {
     //imgs[currentIndex].classList.add("hide");
     imgs[currentIndex].classList.remove("fadeIn");
     imgs[currentIndex].classList.add("fadeOut");
+
     currentIndex = (currentIndex+maxIndex-1) % maxIndex;    // +maxIndex because in JS -1%x=-1 et non x-1 donc on ajoute x pour loop
+    currentCounter.innerText = currentIndex+1;
+    
     imgs[currentIndex].classList.remove("hide");
     imgs[currentIndex].classList.remove("fadeOut");
     imgs[currentIndex].classList.add("fadeIn");
