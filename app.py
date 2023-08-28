@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, make_response, abort
-import werkzeug.exceptions
-from os import listdir, path
+from os import listdir
 
 import json
 
@@ -96,7 +95,6 @@ def get_filenames(project: str, filetype: str):
     except ValueError:
         pass
 
-    print(files)
     return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files]), "descriptions": PROJECTS_DATA[project]["descriptions"]}, 200)
 
 if __name__ == "__main__":

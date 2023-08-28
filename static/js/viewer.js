@@ -9,10 +9,7 @@ var maxIndex = 0;
 
 const loading = document.getElementById("loading");
 
-function endLoad(parent, imgHTML) {
-    //parent.appendChild(imgHTML);
-
-    //loading.style.display = "none";
+function endLoad(imgHTML) {
     imgHTML.parentNode.style.width = imgHTML.width + "px";
     imgHTML.parentNode.style.height = imgHTML.height + "px";
 }
@@ -70,11 +67,11 @@ function loadImg(HTMLParent, filename, path, hide, zIndex, HTMLdescription) {
     // Add load listener before fetching to be sure
     if (hide) {
         img.addEventListener("load", (e) => {
-            endLoad(HTMLParent, e.target);
+            endLoad(e.target);
         });
     } else {
         img.addEventListener("load", (e) => {
-            endLoad(HTMLParent, e.target);
+            endLoad(e.target);
             e.target.parentNode.classList.remove("hide");
             e.target.parentNode.classList.remove("fadeOut");
             e.target.parentNode.classList.add("fadeIn");
@@ -104,40 +101,28 @@ function loadFilm(HTMLParent, filename, path, hide, zIndex) {
 
     // Add load listener before fetching to be sure
     video.addEventListener("load", (e) => {
-        endLoad(HTMLParent, e.target);
+        endLoad(e.target);
     });
     video.src = path;
 }
 
 function goNext() {
     let imgsWrapper = carrousel.children;
-    //imgsWrapper[currentIndex].classList.toggle("hide");
     imgsWrapper[currentIndex].classList.remove("fadeIn");
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeIn");
     imgsWrapper[currentIndex].classList.add("fadeOut");
-
-    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeOut");
     
     currentIndex = (currentIndex+1) % maxIndex;
     currentCounter.innerText = currentIndex+1;
 
     imgsWrapper[currentIndex].classList.remove("hide");
     imgsWrapper[currentIndex].classList.remove("fadeOut");
-
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("hide");
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeOut");
     imgsWrapper[currentIndex].classList.add("fadeIn");
-    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeIn");
 }
 
 function goPrev() {
     let imgsWrapper = carrousel.children;
-    //imgsWrapper[currentIndex].classList.add("hide");
     imgsWrapper[currentIndex].classList.remove("fadeIn");
     imgsWrapper[currentIndex].classList.add("fadeOut");
-
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeIn");
-    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeOut");
 
     currentIndex = (currentIndex+maxIndex-1) % maxIndex;    // +maxIndex because in JS -1%x=-1 et non x-1 donc on ajoute x pour loop
     currentCounter.innerText = currentIndex+1;
@@ -145,10 +130,6 @@ function goPrev() {
     imgsWrapper[currentIndex].classList.remove("hide");
     imgsWrapper[currentIndex].classList.remove("fadeOut");
     imgsWrapper[currentIndex].classList.add("fadeIn");
-
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("hide");
-    //imgsWrapper[currentIndex].firstElementChild.classList.remove("fadeOut");
-    //imgsWrapper[currentIndex].firstElementChild.classList.add("fadeIn");
 }
 
 next.addEventListener("click", (e) => {
