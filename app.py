@@ -97,5 +97,9 @@ def get_filenames(project: str, filetype: str):
 
     return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files]), "descriptions": PROJECTS_DATA[project]["descriptions"]}, 200)
 
+@app.route("/admin")
+def connect_pannel():
+    return render_template("connect.html")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

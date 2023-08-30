@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/connect.css')}}?version=3">
+
+<title>Connexion</title>
+{% endblock %}
+
+{% block body %}
+<form method="post" id="connect-pannel">
+    <h1>Connexion</h1>
+
+    <input type="text" name="login" id="login-input" class="form-input" placeholder="Identifiant">
+
+    <input type="password" name="pswd" id="pswd-input" class="form-input" placeholder="Mot de passe">
+
+    <button type="submit">Valider</button>
+</form>
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}

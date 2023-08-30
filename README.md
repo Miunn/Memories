@@ -1,12 +1,16 @@
 # Memories 
 
-## An hosting website for *films* and *pics*
+An hosting website for *films* and *pics*
 
-### Requirements
+## Description
+
+Web application to browse hosted pics and films
+
+## Requirements
 
 * Flask `^2.2.2`
 
-### Data structure
+## Data structure
 
 Hosted pics and films must follow the next structure tree
 
@@ -30,7 +34,7 @@ Hosted pics and films must follow the next structure tree
             |- <cover.*>        # Pic to display in home page
 ```
 
-### The *data.json* file
+## The *data.json* file
 
 The *data.json* file should contain all the data relevant to every hosted project. Each item in the json represent an hosted project. The *data.json* file saved inside the *static/* folder should follow the following structure:
 
@@ -52,7 +56,7 @@ The *data.json* file should contain all the data relevant to every hosted projec
 
 The descriptions field should contain the description associated with each picture. A blank string can be leave as description if there is nothing to tell. Keys are the pictures' files names with the extension.
 
-### Work in progress
+## Work in progress
 
 * Page transitions
 * Admin page for uploading
