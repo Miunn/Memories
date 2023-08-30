@@ -56,6 +56,10 @@ The *data.json* file should contain all the data relevant to every hosted projec
 
 The descriptions field should contain the description associated with each picture. A blank string can be leave as description if there is nothing to tell. Keys are the pictures' files names with the extension.
 
+## Limitations
+
+You can't register a project named *admin* in order that the admin pannel works
+
 ## Work in progress
 
 * Page transitions
