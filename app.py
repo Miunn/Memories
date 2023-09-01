@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request, make_response, abort
-from os import listdir
+from os import listdir, getenv
 
 import json
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 app = Flask(__name__)
 
@@ -97,9 +102,17 @@ def get_filenames(project: str, filetype: str):
 
     return make_response({"filenames": files, "path": dict([(file, f"/static/assets/{project}/{filetype}/{file}") for file in files]), "descriptions": PROJECTS_DATA[project]["descriptions"]}, 200)
 
-@app.route("/admin")
+@app.route("/admin", methods=["GET", "POST"])
 def connect_pannel():
-    return render_template("connect.html")
+    if request.method == "GET":
+        return render_template("admin/connect.html")
+
+    login, pswd = request.form.get("login", default=None), request.form.get("pswd", default=None)
+
+    if login != getenv("ADMIN_LOGIN") or pswd != getenv("ADMIN_PSWD"):
+        abort(403)
+
+    return render_template("admin/pannel.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

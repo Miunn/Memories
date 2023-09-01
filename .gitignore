@@ -7,3 +7,5 @@ static/assets/*/thumbnails/img/*
 __pycache__
 venv/
 memories.sock
+
+.env
