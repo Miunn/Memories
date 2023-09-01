@@ -1,5 +1,50 @@
 {% extends 'index.html' %}
 
-{% block body %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/pannel.css')}}">
+{% endblock %}
 
+{% block body %}
+<h1>Panneau d'administration</h1>
+
+<div class="memories-list">
+    <h2>Projets accessibles</h2>
+
+    <table>
+        <tr>
+            <th>Lien</th>
+            <th>Titre</th>
+            <th>Photos</th>
+            <th>Films</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for project, data in memories.items() %}
+        <tr>
+            <td>
+                <a href="/{{data['href']}}">{{data["href"]}}/</a>
+            </td>
+            <td>
+                {{data["title"]}}
+            </td>
+            <td>
+                {{data["photo_count"]}}
+            </td>
+            <td>
+                {{data["film_count"]}}
+            </td>
+            <td class="option">
+                Télécharger
+            </td>
+            <td class="option">
+                Modifier
+            </td>
+            <td class="option">
+                Supprimer
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

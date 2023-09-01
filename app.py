@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, make_response, abort
-from os import listdir, getenv
+from flask import Flask, render_template, request, make_response, abort, jsonify
+from os import listdir, getenv, walk
 
 import json
 
@@ -41,7 +41,7 @@ def project(project: str):
 
     films_fns = [(f,i) for f,i in zip(film_path, film_thumb)]
 
-    return render_template("memorie-home.html", title=PROJECTS_DATA[project]["title"], headline=PROJECTS_DATA[project]["headline"], memory=project, subtitle=PROJECTS_DATA[project]["subtitle"], pictures=images_fns, films=films_fns, img_count=len(images_fns), film_count=len(films_fns))
+    return render_template("memorie-home.html", title=PROJECTS_DATA[project]["title"], headline=PROJECTS_DATA[project]["headline"], memory=project, subtitle=PROJECTS_DATA[project]["subtitle"], pictures=images_fns, films=films_fns, img_count=PROJECTS_DATA[project]["photo_count"], film_count=PROJECTS_DATA[project]["film_count"])
 
 @app.route("/<string:project>/viewer/<string:filetype>")
 def viewer(project: str, filetype: str):    
@@ -74,9 +74,9 @@ def seeall(project: str, filetype: str):
     files.sort()
 
     if filetype == "img":
-        return render_template("seeall-img.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=len(files), filetype="Photos", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
+        return render_template("seeall-img.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=PROJECTS_DATA[project]["photo_count"], filetype="Photos", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
     elif filetype == "film":
-        return render_template("seeall-film.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=len(files), filetype="Films", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
+        return render_template("seeall-film.html", title=PROJECTS_DATA[project]["title"], memory=project, file_count=PROJECTS_DATA[project]["film_count"], filetype="Films", links=[f"/static/assets/{project}/{filetype}/{name}" for name in files])
     else:
         abort(404)
 
@@ -112,7 +112,7 @@ def connect_pannel():
     if login != getenv("ADMIN_LOGIN") or pswd != getenv("ADMIN_PSWD"):
         abort(403)
 
-    return render_template("admin/pannel.html")
+    return render_template("admin/pannel.html", memories=PROJECTS_DATA)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
