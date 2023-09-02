@@ -40,3 +40,10 @@ a {
 .alliance {
     font-family: "Alliance No.2 Light", sans-serif;
 }
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

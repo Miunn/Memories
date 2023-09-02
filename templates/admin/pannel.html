@@ -35,13 +35,13 @@
                 {{data["film_count"]}}
             </td>
             <td class="option">
-                <a href="#">Télécharger</a>
+                <a class="download-project" href="{{url_for('download_project', project=data['href'])}}">Télécharger</a>
             </td>
             <td class="option">
-                <a href="#">Modifier</a>
+                <a class="edit-project" href="#">Modifier</a>
             </td>
             <td class="option">
-                <a href="#">Supprimer</a>
+                <a class="delete-project" href="#">Supprimer</a>
             </td>
         </tr>
         {% endfor %}
