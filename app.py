@@ -140,5 +140,23 @@ def download_project(project: str):
         download_name=f'{project}.zip'
     )
 
+@app.route("/size/<string:project>")
+def get_project_size(project: str):
+    if not project in PROJECTS:
+        abort(404)
+
+    project_path = f"static/assets/{project}"
+    img_path = f"static/assets/{project}/img"
+    film_path = f"static/assets/{project}/film"
+    thumbnails_path = f"static/assets/{project}/thumbnails"
+    paths = [project_path, img_path, film_path, thumbnails_path]
+
+    sizes = [0, 0, 0, 0]
+    for i in range(len(paths)):
+        for p, d, f in walk(paths[i]):
+            sizes[i] += sum([path.getsize(path.join(p, file)) for file in f])
+
+    return make_response({"memory": project, "size": sizes[0], "photo_size": sizes[1], "film_size": sizes[2], "thumbnails": sizes[3]})
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
