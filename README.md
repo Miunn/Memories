@@ -59,6 +59,7 @@ The descriptions field should contain the description associated with each pictu
 ## Limitations
 
 You can't register a project named *admin* in order that the admin pannel works
+You can't register a project names *download* for the download enpoint to work
 
 ## Work in progress
 
