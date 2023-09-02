@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, make_response, abort, send_file
 from os import listdir, getenv, path, walk
+from shutil import rmtree
 
 import json
 
@@ -8,7 +9,6 @@ from dotenv import load_dotenv
 # For files downloading
 from io import BytesIO
 from zipfile import ZipFile
-from glob import glob
 
 load_dotenv()
 
@@ -18,7 +18,8 @@ app = Flask(__name__)
 with open("static/data.json", "r") as f:
     PROJECTS_DATA = json.load(f)
 
-PROJECTS = list(PROJECTS_DATA.keys())
+def project_exist(project):
+    return project in PROJECTS_DATA
 
 @app.errorhandler(404)
 def not_found(error):
@@ -32,7 +33,7 @@ def home():
 @app.route("/<string:project>")
 def project(project: str):
 
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
 
     # Get filenames
@@ -50,7 +51,7 @@ def project(project: str):
 
 @app.route("/<string:project>/viewer/<string:filetype>")
 def viewer(project: str, filetype: str):    
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
     
     start = request.args.get("start", default=None)
@@ -69,7 +70,7 @@ def viewer(project: str, filetype: str):
 
 @app.route("/<string:project>/all/<string:filetype>")
 def seeall(project: str, filetype: str):
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
 
     if filetype != "img" and filetype != "film":
@@ -87,7 +88,7 @@ def seeall(project: str, filetype: str):
 
 @app.route("/<string:project>/names/<string:filetype>")
 def get_filenames(project: str, filetype: str):
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
     
     if filetype != "img" and filetype != "film":
@@ -121,14 +122,14 @@ def connect_pannel():
 
 @app.route("/admin/edit/<string:project>")
 def edit_project(project: str):
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
 
     return render_template("edit-memory.html")
 
 @app.route("/download/<string:project>")
 def download_project(project: str):
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
 
     stream = BytesIO()
@@ -149,7 +150,7 @@ def download_project(project: str):
 
 @app.route("/size/<string:project>")
 def get_project_size(project: str):
-    if not project in PROJECTS:
+    if not project_exist(project):
         abort(404)
 
     project_path = f"static/assets/{project}"
@@ -165,5 +166,23 @@ def get_project_size(project: str):
 
     return make_response({"memory": project, "size": sizes[0], "photo_size": sizes[1], "film_size": sizes[2], "thumbnails": sizes[3]})
 
+@app.route("/admin/delete/<string:project>")
+def delete_project(project: str):
+    if not project_exist(project):
+        abort(404)
+
+    try:
+        rmtree(f"static/assets/{project}")
+
+        del PROJECTS_DATA[project]
+        
+        with open("static/data.json", "w") as f:
+            f.write(json.dumps(PROJECTS_DATA))
+
+        return make_response("No Content", 204)
+    except Exception as e:
+        return make_response({"error": str(e)}, 500)
+
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
