@@ -119,6 +119,13 @@ def connect_pannel():
 
     return render_template("admin/pannel.html", memories=PROJECTS_DATA)
 
+@app.route("/admin/edit/<string:project>")
+def edit_project(project: str):
+    if not project in PROJECTS:
+        abort(404)
+
+    return render_template("edit-memory.html")
+
 @app.route("/download/<string:project>")
 def download_project(project: str):
     if not project in PROJECTS:
