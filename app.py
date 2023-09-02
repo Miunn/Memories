@@ -1,9 +1,14 @@
-from flask import Flask, render_template, request, make_response, abort, jsonify
-from os import listdir, getenv, walk
+from flask import Flask, render_template, request, make_response, abort, send_file
+from os import listdir, getenv, path, walk
 
 import json
 
 from dotenv import load_dotenv
+
+# For files downloading
+from io import BytesIO
+from zipfile import ZipFile
+from glob import glob
 
 load_dotenv()
 
@@ -113,6 +118,27 @@ def connect_pannel():
         abort(403)
 
     return render_template("admin/pannel.html", memories=PROJECTS_DATA)
+
+@app.route("/download/<string:project>")
+def download_project(project: str):
+    if not project in PROJECTS:
+        abort(404)
+
+    stream = BytesIO()
+    with ZipFile(stream, 'w') as zf:
+        for parent_path, folders, files in walk(f"static/assets/{project}"):
+            for folder in folders:
+                zf.write(path.join(parent_path, folder), path.join(parent_path, folder).replace(f"static/assets/{project}", ""))
+
+            for file in files:
+                zf.write(path.join(parent_path, file), path.join(parent_path, file).replace(f"static/assets/{project}", ""))
+    stream.seek(0)
+
+    return send_file(
+        stream,
+        as_attachment=True,
+        download_name=f'{project}.zip'
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
