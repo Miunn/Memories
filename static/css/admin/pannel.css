@@ -34,3 +34,36 @@ tr:nth-child(even) {
 .option {
     text-align: center;
 }
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+dialog .submit {
+    display: flex;
+    gap: 20px;
+}
+
+dialog button {
+    all: unset;
+
+    width: 50%;
+    padding: 10px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+dialog button[type='reset'] {
+    float: left;
+}
+
+dialog button[type='submit'] {
+    float: right;
+}

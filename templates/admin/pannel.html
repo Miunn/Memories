@@ -21,7 +21,7 @@
             <th></th>
         </tr>
         {% for project, data in memories.items() %}
-        <tr>
+        <tr class="project" id="{{data['href']}}">
             <td>
                 <a href="/{{data['href']}}">{{data["href"]}}/</a>
             </td>
@@ -47,4 +47,21 @@
         {% endfor %}
     </table>
 </div>
+
+<dialog id="delete-dialog">
+    <form method="get">
+        <h1>Supprimer le projet <span id="delete-project-name"></span></h1>
+
+        <p>Lorsqu'elle est confirmée la suppression est immédiate et irréversible</p>
+
+        <div class="submit">
+            <button type="reset">Annuler</button>
+            <button type="submit">Supprimer</button>
+        </div>
+    </form>
+</dialog>
+{% endblock %}
+
+{% block script %}
+<script src="{{url_for('static', filename='js/admin/pannel.js')}}"></script>
 {% endblock %}

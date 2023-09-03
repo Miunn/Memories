@@ -1,0 +1,41 @@
+{
+    "elastique": {
+        "title": "Saut à l'élastique",
+        "description": "Saut réalisé au pont de Ponsonnas lors des vacances en Isère en 2023",
+        "headline": "Le grand saut",
+        "subtitle": "Photos et vidéos du saut à l'élastique réalisé le <span>21/08/2023</span>",
+        "photo_count": 27,
+        "film_count": 4,
+        "descriptions": {
+            "Photo_1_Pont_1.JPG": "Pont de Ponsonnas <a href=\"https://www.google.com/maps/search/?api=1&query=Pont%20de%Ponsonnas\" target='_blank'><span class='alliance'>N44°52'52.43''E5°47'37.568''</span></a>",
+            "Photo_1_Pont_2.jpg": "Pont de Ponsonnas <a href=\"https://www.google.com/maps/search/?api=1&query=Pont%20de%Ponsonnas\" target='_blank'><span class='alliance'>N44°52'52.43''E5°47'37.568''</span></a>",
+            "Photo_1_Pont_3.jpg": "Pont de Ponsonnas<br>103 mètres de haut",
+            "Photo_1_Pont_4.jpg": "Pont de Ponsonnas<br>103 mètres de haut",
+            "Photo_1_Pont_6.jpg": "Pont de Ponsonnas<br>103 mètres de haut",
+            "Photo_1_Pont_7.jpg": "Pont de Ponsonnas<br>103 mètres de haut",
+            "Photo_1_Pont_8.jpg": "Installation de saut vue du bas",
+            "Photo_1_Pont_9.jpg": "Pont de Ponsonnas<br>103 mètres de haut",
+            "Photo_1_Pont_91.jpg": "Installation de saut",
+            "Photo_1_Pont_92.jpg": "Installation de saut",
+            "Photo_1_Pont_93.jpg": "Elastiques de saut",
+            "Photo_2_Paysage.JPG": "Vue du pont sur le Drac",
+            "Photo_3_Avant.JPG": "Avant le saut",
+            "Photo_4_Retour_1.jpg": "Remontée en nature après le saut",
+            "Photo_4_Retour_2.jpg": "Indication du pont",
+            "Photo_5_Apres_1.JPG": "Retour au point de départ",
+            "Photo_5_Apres_2.JPG": "Retour au point de départ",
+            "Photo_6_Apres_3.jpg": "Envie de recommencer",
+            "Photo_7_Tele_1.jpg": "Film realisé par le personnel",
+            "Photo_7_Tele_2.jpg": "Adieux",
+            "Photo_7_Tele_3.jpg": "Concentration maximale",
+            "Photo_7_Tele_4.jpg": "Le grand saut",
+            "Photo_7_Tele_5.jpg": "Retenu par l'élastique",
+            "Photo_7_Tele_6.jpg": "Direction la réception",
+            "Photo_7_Tele_7.jpg": "Libération",
+            "Photo_8_Reception_1.jpg": "Filet de réception",
+            "Photo_8_Reception_2.jpg": "Filet de réception"
+        },
+        "cover_path": "assets/elastique/cover.jpg",
+        "href": "elastique"
+    }
+}
